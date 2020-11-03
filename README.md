@@ -32,12 +32,12 @@ Vous allez devoir créer un mini-blog contenant 3 routes :
 
 - une page affichant les détails d'un article (à faire en dernier)
 
-  - chemin : `/post/:id`
+  - chemin : `/posts/:id`
   - nom du composant : `PostDetails`
 
 ## Ordre
 
-En cas de coup dur, "RTFM" (ça veut lire "lisez la doc").
+En cas de coup dur, "RTFM" (ça veut dire "lisez la doc", je vous laisse chercher la signification du terme anglais...).
 
 ![RTFM](https://binuxlubuntu.files.wordpress.com/2009/10/mao_rtfm_vectorize_by_cmenghi.png)
 
