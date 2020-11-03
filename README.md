@@ -32,7 +32,7 @@ Vous allez devoir créer un mini-blog contenant 3 routes :
 
 - une page affichant les détails d'un article (à faire en dernier)
 
-  - chemin : `/post/:id`
+  - chemin : `/posts/:id`
   - nom du composant : `PostDetails`
 
 ## Ordre
@@ -52,5 +52,5 @@ En cas de coup dur, "RTFM" (ça veut dire "lisez la doc", je vous laisse cherche
 5. Testez en changeant l'URL dans la barre d'adresse
 6. Créez un composant `Navbar` que vous appellerez depuis `App`, mais en le plaçant en-dehors (au-dessus) du `Switch`. Vous utiliserez 3 `Link` pour mener à la homepage, à la page "à propos", à la page contact.
 7. Dans le composant `HomePage`, importez les articles depuis le fichier `src/data/posts.json`, puis faites un `map` pour afficher autant de `div` que d'articles. Pour chaque article, affichez son `title` dans un `h3`, et son `body` dans un `p`.
-8. Dans le composant `Post`, cherchez à afficher le paramètre d'URL `id`. Pour tester, comme on n'a pas mis de lien vers cette page dans la navbar, essayez de mettre le chemin `/posts/1` dans la barre d'adresse (après l'URL http://localhost:3000). Indice : examinez les props de `Post` dans les React Dev Tools. On y trouve `params`, un objet qui contient un autre objet `match`, contenant les paramètres d'URL.
+8. Dans le composant `PostDetails`, cherchez à afficher le paramètre d'URL `id`. Pour tester, comme on n'a pas mis de lien vers cette page dans la navbar, essayez de mettre le chemin `/posts/1` dans la barre d'adresse (après l'URL http://localhost:3000). Indice : examinez les props de `PostDetails` dans les React Dev Tools. On y trouve `params`, un objet qui contient un autre objet `match`, contenant les paramètres d'URL.
 9. Comme dans HomePage, importez le fichier d'articles. Essayez de n'afficher que l'article correspondant au paramètre `id` passé via l'URL. Vous pouvez utiliser `filter` ou une variante ne renvoyant qu'un seul élément, [find](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/find). Attention, vous aurez besoin de convertir le paramètre d'URL `id` en nombre pour pouvoir utiliser filter ou find correctement.
