@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Dojo React Router
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+:point_right: **Commencez par cloner ce repo** et vous y placer, puis installez les dépendances :
 
-## Available Scripts
+- soit via `npm install` ou `npm i`,
+- soit en installant `pnpm`, alternative à NPM plus rapide : `npm i -g pnpm`, **puis** `pnpm install`
 
-In the project directory, you can run:
+Objectif :
 
-### `yarn start`
+- Savoir installer et mettre en place React Router
+- Associer un composant à un "path" (chemin relatif)
+- Gérer les paramètres d'URL
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## "Scope"
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Vous allez devoir créer un mini-blog contenant 3 routes :
 
-### `yarn test`
+- une page d'accueil qui va afficher une liste d'articles (données fournies, voir plus loin).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - chemin : `/`
+  - nom du composant : `HomePage`
 
-### `yarn build`
+- une page "à propos"
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - chemin : `/about`
+  - nom du composant : `About`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- une page "contact"
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  - chemin : `/contact`
+  - nom du composant : `Contact`
 
-### `yarn eject`
+- une page affichant les détails d'un article (à faire en dernier)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  - chemin : `/post/:id`
+  - nom du composant : `PostDetails`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Ordre
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+En cas de coup dur, "RTFM" (ça veut lire "lisez la doc").
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![RTFM](https://binuxlubuntu.files.wordpress.com/2009/10/mao_rtfm_vectorize_by_cmenghi.png)
 
-## Learn More
+1. Commencez par installer React Router dans le projet. Attention, comme mentionné dans la [section Quick Start de la doc](https://reactrouter.com/web/guides/quick-start), c'est le module `react-router-dom` qu'il faut installer. :warning: Vous n'avez pas besoin d'utiliser `create-react-app`, c'est déjà fait !
+2. Vous pouvez :
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- soit suivre la doc et importer `BrowserRouter` depuis `App.jsx` (renommé dans l'exemple en `Router` lors de l'import)
+- soit l'importer depuis `index.jsx`, et alors entourer `<App />` avec les balises `<Router>` ... `</Router>` (ou `<BrowserRouter>` ... `</BrowserRouter>`)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3. Ecrivez les 4 composants, sous forme de **fonctions**, qui peuvent ne renvoyer qu'un contenu minimal pour l'instant (une "div" vide).
+4. Mettez en place la structure avec le `Switch` et à l'intérieur, les `Route`, pour associer les composants aux chemins.
+5. Testez en changeant l'URL dans la barre d'adresse
+6. Créez un composant `Navbar` que vous appellerez depuis `App`, mais en le plaçant en-dehors (au-dessus) du `Switch`. Vous utiliserez 3 `Link` pour mener à la homepage, à la page "à propos", à la page contact.
+7. Dans le composant `HomePage`, importez les articles depuis le fichier `src/data/posts.json`, puis faites un `map` pour afficher autant de `div` que d'articles. Pour chaque article, affichez son `title` dans un `h3`, et son `body` dans un `p`.
+8. Dans le composant `Post`, cherchez à afficher le paramètre d'URL `id`. Pour tester, comme on n'a pas mis de lien vers cette page dans la navbar, essayez de mettre le chemin `/posts/1` dans la barre d'adresse (après l'URL http://localhost:3000). Indice : examinez les props de `Post` dans les React Dev Tools. On y trouve `params`, un objet qui contient un autre objet `match`, contenant les paramètres d'URL.
+9. Comme dans HomePage, importez le fichier d'articles. Essayez de n'afficher que l'article correspondant au paramètre `id` passé via l'URL. Vous pouvez utiliser `filter` ou une variante ne renvoyant qu'un seul élément, [find](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/find). Attention, vous aurez besoin de convertir le paramètre d'URL `id` en nombre pour pouvoir utiliser filter ou find correctement.
